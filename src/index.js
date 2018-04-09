@@ -576,6 +576,10 @@ export default class extends Component {
       button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
     }
 
+    if (this.props.nextBtnLastSlide) {
+      button = this.props.nextBtnLastSlide;
+    }
+
     return (
       <TouchableOpacity
         onPress={() => button !== null && this.scrollBy(1)}
@@ -733,7 +737,6 @@ export default class extends Component {
           : this.renderPagination())}
         {this.renderTitle()}
         {showsButtons && this.renderButtons()}
-        {this.renderOwnNextButton(this.props.nextBtnLastSlide)}
       </View>
     )
   }
