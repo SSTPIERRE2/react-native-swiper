@@ -140,6 +140,7 @@ export default class extends Component {
     activeDotStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     dotColor: PropTypes.string,
     activeDotColor: PropTypes.string,
+    nextBtnLastSlide: PropTypes.node,
     /**
      * Called when the index has changed because the user swiped.
      */
@@ -615,6 +616,16 @@ export default class extends Component {
     )
   }
 
+  renderOwnNextButton = (element) => {
+    const button = element ? element : null;
+
+    return (
+      <View>
+        {button}
+      </View>
+    );
+  }
+
   refScrollView = view => {
     this.scrollView = view;
   }
@@ -722,6 +733,7 @@ export default class extends Component {
           : this.renderPagination())}
         {this.renderTitle()}
         {showsButtons && this.renderButtons()}
+        {this.renderOwnNextButton(this.props.nextBtnLastSlide)}
       </View>
     )
   }
