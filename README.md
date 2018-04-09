@@ -223,6 +223,8 @@ AppRegistry.registerComponent('myproject', () => Swiper);
 | buttonWrapperStyle | `{backgroundColor: 'transparent', flexDirection: 'row', position: 'absolute', top: 0, left: 0, flex: 1, paddingHorizontal: 10, paddingVertical: 10, justifyContent: 'space-between', alignItems: 'center'}` | `style` | Custom styles. |
 | nextButton | `<Text style={styles.buttonText}>›</Text>` | `element` | Allow custom the next button. |
 | prevButton | `<Text style={styles.buttonText}>‹</Text>` | `element` | Allow custom the prev button. |
+| disableNextButton | false | `bool` | Optionally disable next control button. |
+| nextBtnLastSlide | `<NavButton onPress={customFn() => { doRouting(); }/>` | `element` | Allow custom next button, even on last slide if looping is set to false |
 
 #### Props of Children
 
