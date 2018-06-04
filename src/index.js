@@ -651,14 +651,17 @@ export default class extends Component {
        )
     }
     return (
-      <ViewPagerAndroid ref={this.refScrollView}
+      <ScrollView ref={this.refScrollView}
         {...this.props}
-        initialPage={this.props.loop ? this.state.index + 1 : this.state.index}
-        onPageSelected={this.onScrollEnd}
-        key={pages.length}
+        {...this.scrollViewPropOverrides()}
+        contentContainerStyle={[styles.wrapperIOS, this.props.style]}
+        contentOffset={this.state.offset}
+        onScrollBeginDrag={this.onScrollBegin}
+        onMomentumScrollEnd={this.onScrollEnd}
+        onScrollEndDrag={this.onScrollEndDrag}
         style={[styles.wrapperAndroid, this.props.style]}>
         {pages}
-      </ViewPagerAndroid>
+      </ScrollView>
     )
   }
 
