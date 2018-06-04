@@ -462,11 +462,7 @@ export default class extends Component {
     if (state.dir === 'x') x = diff * state.width
     if (state.dir === 'y') y = diff * state.height
 
-    if (Platform.OS !== 'ios') {
-      this.scrollView && this.scrollView[animated ? 'setPage' : 'setPageWithoutAnimation'](diff)
-    } else {
-      this.scrollView && this.scrollView.scrollTo({ x, y, animated })
-    }
+    this.scrollView && this.scrollView.scrollTo({ x, y, animated })
 
     // update scroll state
     this.internals.isScrolling = true
@@ -651,14 +647,17 @@ export default class extends Component {
        )
     }
     return (
-      <ViewPagerAndroid ref={this.refScrollView}
+      <ScrollView ref={this.refScrollView}
         {...this.props}
-        initialPage={this.props.loop ? this.state.index + 1 : this.state.index}
-        onPageSelected={this.onScrollEnd}
-        key={pages.length}
+        {...this.scrollViewPropOverrides()}
+        contentContainerStyle={[styles.wrapperIOS, this.props.style]}
+        contentOffset={this.state.offset}
+        onScrollBeginDrag={this.onScrollBegin}
+        onMomentumScrollEnd={this.onScrollEnd}
+        onScrollEndDrag={this.onScrollEndDrag}
         style={[styles.wrapperAndroid, this.props.style]}>
         {pages}
-      </ViewPagerAndroid>
+      </ScrollView>
     )
   }
 
